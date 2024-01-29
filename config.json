@@ -1,0 +1,17 @@
+{
+    "name": "GAMEPAD PS",
+    "description": "Thư viện khối lệnh tay cầm gamepad cho robot xBot",
+    "libs": [
+        "gamepad.py",
+        "gamepad_handler.py"
+    ],
+    "blocks": [
+        "definition.js"
+    ],
+    "toolbox": "toolbox.xml",
+    "languages": {
+        "en": "languages/en.js",
+        "vn": "languages/vn.js"
+    },
+    "poster": "poster.png"
+}
