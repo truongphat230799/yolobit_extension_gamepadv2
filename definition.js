@@ -1,41 +1,6 @@
-const ColorBlock = '#44cbc6';
+const ColorBlock = '#ff0000';
 const ImgUrl = 'https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/xbot_extension_robocon/images/';
 
-Blockly.Blocks['gamepad_init'] = {
-  init: function () {
-    this.jsonInit(
-      {
-        type: "gamepad_init",
-        message0: "khởi tạo gamepad cổng %1",
-        previousStatement: null,
-        nextStatement: null,
-        args0: [
-          {
-            type: "field_dropdown",
-            name: "port",
-            options: [
-              ["4", "3"],
-              ["5", "4"],
-              ["6", "5"],
-            ],
-          },
-        ],
-        colour: ColorBlock,
-        tooltip: "",
-        helpUrl: ""
-      }
-    )
-  }
-};
-
-Blockly.Python['gamepad_init'] = function (block) {
-  var port = block.getFieldValue("port");
-  Blockly.Python.definitions_['import_gamepad'] = 'from gamepad_handler import *';
-  Blockly.Python.definitions_['create_gamepad'] = 'gamepad_handler = GamepadHandler(' + port + ')';
-  // TODO: Assemble Python into code variable.
-  var code = "";
-  return code;
-};
 
 Blockly.Blocks['gamepad_btn_pressed'] = {
   init: function () {
@@ -118,6 +83,8 @@ Blockly.Python['gamepad_btn_pressed'] = function (block) {
   else if (btn == 'cross') btn = 'a';
   else if (btn == 'circle') btn = 'b';
   // TODO: Assemble Python into code variable.
+  Blockly.Python.definitions_['import_gamepad'] = 'from gamepad_handler import *';
+  Blockly.Python.definitions_['create_gamepad'] = 'gamepad_handler = GamepadHandler(' + port + ')';
   var code = "gamepad_handler.gamepad.data['" + btn + "']";
   return [code, Blockly.Python.ORDER_NONE];
 };
@@ -149,6 +116,8 @@ Blockly.Blocks['gamepad_read_joystick'] = {
 
 Blockly.Python['gamepad_read_joystick'] = function (block) {
   var joystick = block.getFieldValue('joystick');
+  Blockly.Python.definitions_['import_gamepad'] = 'from gamepad_handler import *';
+  Blockly.Python.definitions_['create_gamepad'] = 'gamepad_handler = GamepadHandler(' + port + ')';
   // TODO: Assemble Python into code variable.
   var code = "gamepad_handler.gamepad." + joystick + "[4]";
   return [code, Blockly.Python.ORDER_NONE];
@@ -204,6 +173,8 @@ Blockly.Blocks['gamepad_set_led_rgb'] = {
 Blockly.Python['gamepad_set_led_rgb'] = function (block) {
   var value_color = Blockly.Python.valueToCode(block, 'color', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
+  Blockly.Python.definitions_['import_gamepad'] = 'from gamepad_handler import *';
+  Blockly.Python.definitions_['create_gamepad'] = 'gamepad_handler = GamepadHandler(' + port + ')';
   var code = 'gamepad_handler.set_led_color(' + value_color + ')\n';
   return code;
 };
@@ -247,6 +218,8 @@ Blockly.Python["gamepad_set_rumble"] = function (block) {
   var force = Blockly.Python.valueToCode(block, 'force', Blockly.Python.ORDER_ATOMIC);
   var duration = Blockly.Python.valueToCode(block, 'duration', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
+  Blockly.Python.definitions_['import_gamepad'] = 'from gamepad_handler import *';
+  Blockly.Python.definitions_['create_gamepad'] = 'gamepad_handler = GamepadHandler(' + port + ')';
   var code = "gamepad_handler.set_rumble(" + force + ", " + duration + ")\n";
   return code;
 };
@@ -270,6 +243,8 @@ Blockly.Blocks['gamepad_is_connected'] = {
 
 Blockly.Python["gamepad_is_connected"] = function (block) {
   // TODO: Assemble Python into code variable.
+  Blockly.Python.definitions_['import_gamepad'] = 'from gamepad_handler import *';
+  Blockly.Python.definitions_['create_gamepad'] = 'gamepad_handler = GamepadHandler(' + port + ')';
   var code = "gamepad_handler.is_connected()";
   return [code, Blockly.Python.ORDER_NONE];
 };
@@ -378,6 +353,8 @@ Blockly.Blocks["gamepad_direction"] = {
 Blockly.Python['gamepad_direction'] = function(block) {
   var dir = block.getFieldValue("dir");
   var joystick = block.getFieldValue("joystick");
+  Blockly.Python.definitions_['import_gamepad'] = 'from gamepad_handler import *';
+  Blockly.Python.definitions_['create_gamepad'] = 'gamepad_handler = GamepadHandler(' + port + ')';
   var code = 'gamepad_handler.gamepad.read_joystick('+ joystick+ ')[3] == ' + dir ;
   return [code, Blockly.Python.ORDER_NONE];
 };
