@@ -1,6 +1,6 @@
 {
     "name": "GAMEPAD PS",
-    "description": "Thư viện khối lệnh tay cầm gamepad cho robot xBot",
+    "description": "Thư viện khối lệnh tay cầm gamepad cho robot Yolo:Bit",
     "libs": [
         "gamepad.py",
         "gamepad_handler.py"

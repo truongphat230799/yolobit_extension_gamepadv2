@@ -14,12 +14,7 @@ MODE_BOTH_JOYSTICK = const(4)
 
 class GamepadHandler:
 
-    def __init__(self, port):
-
-        self.port = port
-        # Grove port: GND VCC SCL SDA
-        scl_pin = Pin(PORTS_DIGITAL[port][0])
-        sda_pin = Pin(PORTS_DIGITAL[port][1])
+    def __init__(self):
 
         try:
             self.i2c_gp = SoftI2C(scl=scl_pin, sda=sda_pin, freq=100000)
